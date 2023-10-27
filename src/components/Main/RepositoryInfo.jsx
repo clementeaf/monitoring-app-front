@@ -34,7 +34,7 @@ export default function RepositoryInfo() {
     <div className="flex w-full flex-col items-center justify-center py-6">
       <div className="flex flex-col items-center gap-3">
         <p>Repository Info</p>
-        <div className="flex flex-col w-full p-4 border items-start justify-between border-black/20 rounded-lg">
+        <div className="flex flex-col w-[300px] p-4 border items-start justify-between border-black/20 rounded-lg">
           <div className="flex w-full gap-7 justify-between items-start border-b border-black/10 pb-3">
             <div className="flex flex-col items-start">
               <p className="text-sm font-medium">Created At</p>
