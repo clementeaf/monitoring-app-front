@@ -38,7 +38,7 @@ export default function CommitsInfo() {
     <div className="flex w-full flex-col items-center justify-center py-6 ">
         <div className="flex flex-col items-center gap-3">
           <p>Last Commit</p>
-          <div className="flex w-[300px] flex-col p-4 border border-black/20 rounded-lg">
+          <div className="flex w-full flex-col p-4 border border-black/20 rounded-lg">
             <div className="flex w-full justify-between items-center pb-4 border-b border-black/20 mb-2">
               <div className="flex flex-col items-start justify-start">
                 <p className="text-base font-semibold">{day}</p>

@@ -18,7 +18,7 @@ export default function Home() {
                         key={id} 
                         path={path} 
                         element={ 
-                            <div className="flex h-full items-start justify-start p-4">
+                            <div className="flex items-start justify-start p-4">
                               <Component />
                             </div>
                         } 

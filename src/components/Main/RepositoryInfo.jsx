@@ -1,40 +1,35 @@
 /* eslint-disable react/prop-types */
-import { monthName } from "../../config"
 import { useNavigate } from "react-router-dom";
 import { useLayoutEffect, useMemo, useState } from "react";
-import { format } from "date-fns";
 import useRepoInfoQuery from '../../hooks/useRepoInfoQuery';
+import formatCustomDate from "../../utils";
 
 export default function RepositoryInfo() {
-  const { isError, data: commitsData } = useRepoInfoQuery();
+  const { isError, data: repositoryData } = useRepoInfoQuery();
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useLayoutEffect(() => {
-    if (commitsData) {
-      setData(commitsData);
+    if (repositoryData) {
+      setData(repositoryData);
       setIsLoading(false);
     }
-  }, [commitsData]);
+  }, [repositoryData]);
   const memoizedData = useMemo(() => data, [data]);
 
   if (isError) return <div>Error</div>
   if (isLoading) return <RepositoryInfoLoading />
 
   const { created_at, default_branch, forks, name } = memoizedData;
-  const date = format(new Date(created_at), "dd/MM/yyyy HH:mm");
-  const parts = date.split(/[/ :]/);
-  const day = parts[0] || "N/A";
-  const month = parts[1] ? monthName[parts[1]] : "N/A";
-  const year = parts[2] || "N/A";
+  const {day, month, year} = formatCustomDate(created_at);
 
   return (
     <div className="flex w-full flex-col items-center justify-center py-6">
       <div className="flex flex-col items-center gap-3">
         <p>Repository Info</p>
-        <div className="flex flex-col w-[300px] p-4 border items-start justify-between border-black/20 rounded-lg">
+        <div className="flex flex-col w-full p-4 border items-start justify-between border-black/20 rounded-lg">
           <div className="flex w-full gap-7 justify-between items-start border-b border-black/10 pb-3">
             <div className="flex flex-col items-start">
               <p className="text-sm font-medium">Created At</p>
@@ -52,7 +47,7 @@ export default function RepositoryInfo() {
             <p className="text-xs">Forks: {forks}</p>
           </div>
         </div>
-        <button className="px-8 py-2 border border-black/30 text-black/60 hover:text-black/80 rounded-md mt-2" onClick={() => navigate("/repositoryInfo")}>More info</button>
+        <button className="w-full px-8 py-2 border border-black/30 text-black/60 hover:text-black/80 rounded-md mt-2" onClick={() => navigate("/repositoryInfo")}>More info</button>
       </div>
     </div>
   )
