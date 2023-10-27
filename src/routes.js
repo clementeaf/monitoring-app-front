@@ -6,7 +6,7 @@ const RepositoryInfo = lazy(() => import("./pages/RepositoryInfo"));
 
 export const MAIN_ROUTE = {
     id: "main-route",
-    path: "/",
+    path: "/main",
     component: Main,
     isIndex: false,
     isExact: true,
