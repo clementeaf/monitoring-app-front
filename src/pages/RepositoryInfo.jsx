@@ -1,9 +1,13 @@
+// import { useNavigate } from "react-router-dom";
 import Container from "../components/Container";
+import { useRepoInfoStore } from "../context/RepoInfoContext";
 import formatCustomDate from "../utils";
-import useRepoInfoStore from '../stores/useRepoInfoStore';
 
 export default function RepositoryInfo() {
-  const {data} = useRepoInfoStore();
+  const {data, isLoading, isError} = useRepoInfoStore(); 
+
+  if(isError || data === undefined) return <div>Error</div>
+  if (isLoading) return <div>Loading data....</div>
   
   const created_at = data?.created_at;
   const updated_at = data?.updated_at;

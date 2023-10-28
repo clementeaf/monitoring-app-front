@@ -9,7 +9,9 @@ const contextMapping = {
 };
 
 const GlobalProvider = ({ state, children }) => {
-  const SelectedProvider = contextMapping[state];
+  const SelectedProvider = contextMapping[state] || null;
+
+  if (!SelectedProvider) return <>{children}</>
 
   return <SelectedProvider>{children}</SelectedProvider>
 };

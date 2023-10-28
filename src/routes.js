@@ -23,7 +23,7 @@ export const REPOSITORY_INFO_ROUTE = {
     isIndex: false,
     isExact: true,
     isInSideNav: true,
-    name: "Repository Info",
+    name: "Repository",
     title: "Repository Info",
     description: "Repository Info",
 }
@@ -35,7 +35,7 @@ export const COMMITS_HISTORY_ROUTE = {
     isIndex: false,
     isExact: true,
     isInSideNav: true,
-    name: "Commits History",
+    name: "Commits",
     title: "Commits History",
     description: "Commits History",
 }
