@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import Home from "./pages/Home";
+import { useEffect } from "react";
 
+const socket = new WebSocket('ws://localhost:3000');
 const STALE_TIME_MINUTES = 5;
 
 const queryClient = new QueryClient({
@@ -14,6 +16,10 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  useEffect(() => {
+    socket.on
+  }, [])
+
   return (
     <QueryClientProvider client={queryClient}>
       <Home />
