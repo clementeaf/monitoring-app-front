@@ -1,12 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { monthName } from "../../config"
 import { useNavigate } from "react-router-dom";
-import useCommitsQuery from '../../hooks/useCommitsQuery';
 import { useLayoutEffect, useMemo, useState } from "react";
-import { format } from "date-fns";
+import formatCustomDate from "../../utils";
+import { useCommitsInfoStore } from "../../context/CommitsInfoContext";
 
 export default function CommitsInfo() {
-  const { isError, data: commitsData } = useCommitsQuery();
+  const {isError, data: commitsData} = useCommitsInfoStore(); 
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
@@ -19,20 +19,13 @@ export default function CommitsInfo() {
     }
   }, [commitsData]);
 
-  const memoizedData = useMemo(() => data, [data]);
+  const memorizedData = useMemo(() => data, [data]);
 
   if (isError) return <div>Error</div>
   if (isLoading) return <CommitsInfoLoading />
 
-  const {author, message} = memoizedData.at(length).commit;
-  const date = format(new Date(author.date), "dd/MM/yyyy HH:mm");
-  
-  const parts = date.split(/[/ :]/);
-  const day = parts.at(0)
-  const month = monthName[parts.at(1)];
-  const year = parts.at(2);
-  const hour = parts.at(3);
-  const minutes = parts.at(4);
+  const {author, message} = memorizedData.at(length).commit;
+  const {day, month, year, time} = formatCustomDate(author?.date);
 
   return (
     <div className="flex w-full flex-col items-center justify-center py-6 ">
@@ -46,8 +39,8 @@ export default function CommitsInfo() {
                 <p className="text-xs">{year}</p>
               </div>
               <div className="flex flex-col items-start">
-                <p className="text-sm">Commit #{memoizedData.length}</p>
-                <p className="text-xs">{hour}:{minutes}</p>
+                <p className="text-sm">Commit #{memorizedData.length}</p>
+                <p className="text-xs">{time}</p>
               </div>
             </div>
             <div className="flex flex-col items-start gap-1 mt-2">
@@ -56,7 +49,12 @@ export default function CommitsInfo() {
             </div>
           </div>
           
-          <button className="px-8 py-2 border border-black/30 text-black/60 hover:text-black/80 rounded-md mt-2" onClick={() => navigate("/commits")}>View previous commits</button>
+          <button 
+            className="px-8 py-2 border border-black/30 text-black/60
+             hover:text-black/80 rounded-md mt-2" 
+             onClick={() => navigate("/commits")}>
+            View previous commits
+          </button>
         </div>
     </div>
   )

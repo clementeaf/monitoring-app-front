@@ -1,32 +1,34 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { useLayoutEffect, useMemo, useState } from "react";
-import useRepoInfoQuery from '../../hooks/useRepoInfoQuery';
 import formatCustomDate from "../../utils";
+import { useRepoInfoStore } from "../../context/RepoInfoContext";
 
 export default function RepositoryInfo() {
-  const { isError, data: repositoryData } = useRepoInfoQuery();
+  const {isError, data: repositoryData} = useRepoInfoStore(); 
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useLayoutEffect(() => {
-    if (repositoryData) {
+    if (repositoryData != undefined) {
       setData(repositoryData);
       setIsLoading(false);
     }
   }, [repositoryData]);
-  const memoizedData = useMemo(() => data, [data]);
+
+  const memorizedData = useMemo(() => data, [data]);
 
   if (isError) return <div>Error</div>
   if (isLoading) return <RepositoryInfoLoading />
 
-  const { created_at, default_branch, forks, name } = memoizedData;
+  const { created_at, default_branch, forks, name } = memorizedData;
   const {day, month, year} = formatCustomDate(created_at);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center py-6">
+    <div className="flex w-full flex-col items-center justify-center py-2">
       <div className="flex flex-col items-center gap-3">
         <p>Repository Info</p>
         <div className="flex flex-col w-full p-4 border items-start justify-between border-black/20 rounded-lg">
@@ -47,7 +49,9 @@ export default function RepositoryInfo() {
             <p className="text-xs">Forks: {forks}</p>
           </div>
         </div>
-        <button className="w-full px-8 py-2 border border-black/30 text-black/60 hover:text-black/80 rounded-md mt-2" onClick={() => navigate("/repositoryInfo")}>More info</button>
+        <button className="w-full px-8 py-2 border border-black/30
+         text-black/60 hover:text-black/80 rounded-md mt-2" 
+         onClick={() => navigate("/repositoryInfo")}>More info</button>
       </div>
     </div>
   )
