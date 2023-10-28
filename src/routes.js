@@ -23,7 +23,7 @@ export const SIGN_IN_ROUTE = {
     component: LogIn,
     isIndex: false,
     isExact: true,
-    isInSideNav: true,
+    isInSideNav: false,
     name: "Sign In",
     title: "Sign In",
     description: "Sign In",
