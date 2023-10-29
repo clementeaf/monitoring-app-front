@@ -41,7 +41,7 @@ export default function Home({ sendMessage }) {
   return (
     <div
       className={`flex flex-col min-h-screen min-w-screen ${
-        cookie === null || location.pathname === '/signIn' && 'justify-center'
+        cookie === null || (location.pathname === '/signIn' && 'justify-center')
       } bg-gray-100 p-4`}
     >
       <GlobalProvider state={contextName}>
