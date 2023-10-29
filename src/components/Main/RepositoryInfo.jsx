@@ -53,7 +53,7 @@ export default function RepositoryInfo() {
         <button
           type="button"
           className="w-full px-8 py-2 border border-black/30
-         text-black/60 hover:text-black/80 rounded-md mt-2"
+         text-black/60 hover:bg-black hover:text-white ease-in-out duration-300 rounded-md mt-2"
           onClick={() => navigate('/repositoryInfo')}
         >
           More info

@@ -23,6 +23,7 @@
             bash: npm run dev
     
     The development server will start, and you can access the application in your browser at http://localhost:4000.
+    - For the login:  THERE IS NO DEFAULT USER, so feel free to enter any username and password in the login form, as it is configured to disable the button action if the 'User' and 'Password' fields are empty.
 
 ## Features
 

@@ -53,7 +53,7 @@ export default function CommitsInfo() {
         <button
           type="button"
           className="px-8 py-2 border border-black/30 text-black/60
-             hover:text-black/80 rounded-md mt-2"
+            rounded-md mt-2 hover:bg-black hover:text-white ease-in-out duration-300"
           onClick={() => navigate('/commits')}
         >
           View previous commits
