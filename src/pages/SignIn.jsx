@@ -14,7 +14,7 @@ export default function SignIn() {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    Cookies.set('user', values.user);
+    Cookies.set('user', values.user, { expires: 1 / 24 });
     resetForm();
     navigate('/');
   };
