@@ -18,18 +18,11 @@
     - Install the dependencies:
             - Using npm:
                  bash: npm install
-            - Using Yarn:
-                 bash: yarn
-    - Configuration:
-        Create a .env file in the root directory of the project and set the following environment variables:
-        REACT_APP_BACKEND_URL: http://localhost:3000.
     - Running the Development Server: To start the development server, run:
         Using npm:
             bash: npm run dev
-        Using Yarn:
-            bash: yarn dev
     
-    The development server will start, and you can access the application in your browser at http://localhost:4000 (or the specified URL).
+    The development server will start, and you can access the application in your browser at http://localhost:4000.
 
 ## Features
 

@@ -1,6 +1,7 @@
-import Container from "../components/Container";
-import CommitsInfo from "../components/Main/CommitsInfo";
-import RepositoryInfo from "../components/Main/RepositoryInfo";
+import React from 'react';
+import Container from '../components/Container';
+import CommitsInfo from '../components/Main/CommitsInfo';
+import RepositoryInfo from '../components/Main/RepositoryInfo';
 import GlobalProvider from '../context/GlobalProvider';
 
 export default function Main() {
@@ -13,5 +14,5 @@ export default function Main() {
         <CommitsInfo />
       </GlobalProvider>
     </Container>
-  )
+  );
 }

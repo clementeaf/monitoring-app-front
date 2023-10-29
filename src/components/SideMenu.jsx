@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import {RxHamburgerMenu} from "react-icons/rx";
-import useAppRoutes from "../hooks/useAppRoutes";
-import { NavLink } from "react-router-dom";
+import React, { useState } from 'react';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { NavLink } from 'react-router-dom';
+import useAppRoutes from '../hooks/useAppRoutes';
 
 export default function SideMenu() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -10,36 +11,43 @@ export default function SideMenu() {
 
   return (
     <div className="text-lg">
-      <button onClick={() => setOpenMenu(!openMenu)}>
+      <button type="button" onClick={() => setOpenMenu(!openMenu)}>
         <RxHamburgerMenu />
       </button>
-      {openMenu && <UnfoldMenu close={() => setOpenMenu(!openMenu)} routes={routes.filter(({isInSideNav}) => isInSideNav) }/>}
+      {openMenu && (
+        <UnfoldMenu
+          close={() => setOpenMenu(!openMenu)}
+          routes={routes.filter(({ isInSideNav }) => isInSideNav)}
+        />
+      )}
     </div>
-  )
+  );
 }
 
-function UnfoldMenu({routes}) {
+function UnfoldMenu({ routes }) {
   return (
-    <div className="absolute top-[77.5px] left-[15px] flex flex-col items-start justify-start 
+    <div
+      className="absolute top-[77.5px] left-[15px] flex flex-col items-start justify-start 
                     py-4 px-6 min-w-[180px] bg-white z-[9999] text-black border 
-                    border-black/10 rounded-lg shadow-lg">
-      {routes.map(({id, path, name}, index) => (
+                    border-black/10 rounded-lg shadow-lg"
+    >
+      {routes.map(({ id, path, name }, index) => (
         <li key={id} className="list-none">
           <NavLink to={path}>
-            {(({isActive}) => (
+            {({ isActive }) => (
               <div
                 className={`${
-                  isActive ? "text-black" : "text-black/50"
+                  isActive ? 'text-black' : 'text-black/50'
                 } font-light w-full py-2 ${
-                  index === routes.length - 1 ? "" : "border-b border-black/10"
+                  index === routes.length - 1 ? '' : 'border-b border-black/10'
                 }`}
               >
                 {name}
               </div>
-            ))}
+            )}
           </NavLink>
         </li>
-      ))}    
-      </div>
-  )
+      ))}
+    </div>
+  );
 }

@@ -1,16 +1,13 @@
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 // RepoInfoContext.js
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import useRepoInfoQuery from '../hooks/useRepoInfoQuery';
 
 const RepoInfoContext = createContext();
 
-export const useRepoInfoStore = () => {
-  return useContext(RepoInfoContext);
-};
+export const useRepoInfoStore = () => useContext(RepoInfoContext);
 
-export const RepoInfoProvider = ({ children }) => {
+export function RepoInfoProvider({ children }) {
   const repositoryInfoQuery = useRepoInfoQuery();
 
   return (
@@ -18,4 +15,4 @@ export const RepoInfoProvider = ({ children }) => {
       {children}
     </RepoInfoContext.Provider>
   );
-};
+}

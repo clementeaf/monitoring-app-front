@@ -1,19 +1,20 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/prop-types */
-
-import { CommitsInfoProvider } from "./CommitsInfoContext";
-import { RepoInfoProvider } from "./RepoInfoContext";
+import React from 'react';
+import { CommitsInfoProvider } from './CommitsInfoContext';
+import { RepoInfoProvider } from './RepoInfoContext';
 
 const contextMapping = {
   Repository: RepoInfoProvider,
   Commits: CommitsInfoProvider,
 };
 
-const GlobalProvider = ({ state, children }) => {
+function GlobalProvider({ state, children }) {
   const SelectedProvider = contextMapping[state] || null;
 
-  if (!SelectedProvider) return <>{children}</>
+  if (!SelectedProvider) return <>{children}</>;
 
-  return <SelectedProvider>{children}</SelectedProvider>
-};
+  return <SelectedProvider>{children}</SelectedProvider>;
+}
 
 export default GlobalProvider;

@@ -1,25 +1,28 @@
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
-    user: Yup.string().required("User field is required"),
-    password: Yup.string().required("Password field is required"),
+    user: Yup.string().required('User field is required'),
+    password: Yup.string().required('Password field is required'),
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    Cookies.set("user", values.user);
+    Cookies.set('user', values.user);
     resetForm();
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center p-4">
       <Formik
-        initialValues={{ user: "", password: "" }}
+        initialValues={{ user: '', password: '' }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
@@ -52,7 +55,11 @@ export default function SignIn() {
               )}
             </div>
 
-            <button className="self-center border border-black/20 w-full py-2" type="submit" disabled={!isValid || !dirty}>
+            <button
+              className="self-center border border-black/20 w-full py-2"
+              type="submit"
+              disabled={!isValid || !dirty}
+            >
               Sign in
             </button>
           </Form>
